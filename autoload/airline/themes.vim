@@ -39,13 +39,19 @@ endfunction
 function! airline#themes#patch(palette)
   for mode in keys(a:palette)
     if !has_key(a:palette[mode], 'airline_warning')
-      let a:palette[mode]['airline_warning'] = [ '#000000', '#df5f00', 232, 166 ]
+      "let a:palette[mode]['airline_warning'] = [ '#000000', '#df5f00', 232, 166 ]
+      "let a:palette[mode]['airline_warning'] = [ s:gui_orange, s:gui_red, s:term_orange, s:term_red ]
+      let a:palette[mode]['airline_warning'] = airline#themes#get_highlight2(['Repeat', 'fg'], ['ErrorMsg', 'fg'], 'none')
     endif
     if !has_key(a:palette[mode], 'airline_error')
-      let a:palette[mode]['airline_error'] = [ '#000000', '#990000', 232, 160 ]
+      "let a:palette[mode]['airline_error'] = [ '#000000', '#990000', 232, 160 ]
+      "let a:palette[mode]['airline_error'] = [ s:gui_lred, s:gui_red, s:term_lred, s:term_red ]
+      let a:palette[mode]['airline_error'] = airline#themes#get_highlight2(['ErrorMsg', 'bg'], ['ErrorMsg', 'fg'], 'none')
     endif
     if !has_key(a:palette[mode], 'airline_term')
-      let a:palette[mode]['airline_term'] = [ '#9cffd3', '#202020', 85, 232]
+      "let a:palette[mode]['airline_term'] = [ '#9cffd3', '#202020', 85, 232 ]
+      "let a:palette[mode]['airline_term'] = [ s:gui_black, s:gui_grey, s:term_black, s:term_grey ]
+      let a:palette[mode]['airline_term'] = airline#themes#get_highlight2(['Comment', 'bg'], ['Comment', 'fg'], 'none')
     endif
   endfor
 
